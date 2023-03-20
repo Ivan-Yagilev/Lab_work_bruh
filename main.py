@@ -63,7 +63,8 @@ def test(n):
 
 if __name__ == "__main__":
     choice = input("1. Тестовая задача, 2. Основная\n")
+    n = int(input("Введите число шагов\n"))
     if choice == '1':
-        test(100)
+        test(n)
     else:
-        main(2500)
+        main(n)
