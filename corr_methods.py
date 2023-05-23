@@ -90,8 +90,10 @@ def get_solution(n, k, q, f, border1, border2):
     for _ in range(1, n+1):
         if (x <= KSI or (x - h) >= KSI):
             a_j.append(k(x-0.5*h))
+            # a_j.append(h/get_integral(x-h, x, k))
         else:
             tmp = (KSI-x+h)/k(0.5*(x-h+KSI))+(x-KSI)/k(0.5*(x+KSI))
+            # tmp = get_integral(x-h, KSI, k) + get_integral(KSI, x, k)
             a_j.append(h / tmp)
         x += h
 
