@@ -2,13 +2,14 @@ from math import pi, sqrt, sin, cos, exp
 
 
 KSI = pi / 4
+EPS = 0.001
 
 
 def k(x):
     if x < 0 or x > 1:
         return 0
     if x >= 0 and x < KSI:
-        return sqrt(2) * sin(x)
+        return sqrt(2) * cos(x)
     return cos(x) * cos(x)
 
 
@@ -83,10 +84,13 @@ def get_integral(a, b, func):
 
 
 def get_solution(n, k, q, f, border1, border2):
+    # h = (1 - EPS) / n
     h = 1 / n
 
     a_j = []
+    # x = h + EPS
     x = h
+
     for _ in range(1, n+1):
         if (x <= KSI or (x - h) >= KSI):
             a_j.append(k(x-0.5*h))
@@ -99,6 +103,7 @@ def get_solution(n, k, q, f, border1, border2):
 
     d_j = []
     fi_j = []
+    # x = h + EPS
     x = h
     for _ in range(1, n):
         if (x+0.5*h) <= KSI or (x-0.5*h) >= KSI:
@@ -120,7 +125,6 @@ def get_solution(n, k, q, f, border1, border2):
         C.append(a_j[i] / (h**2) + a_j[i+1] / (h**2) + d_j[i])
 
     xi1 = 0
-    # xi2 = 0
     alpha = [xi1]
     beta = [border1]
     for i in range(n-1):
@@ -141,9 +145,11 @@ def task(n, k, q, f, border1, border2):
 
     e = []
 
+    # x_tmp = 0.0 + EPS
     x_tmp = 0.0
     x = []
-    h = 1/n
+    # h = (1 - EPS)/n
+    h = 1 / n
 
     v2 = [v2[2*i] for i in range(n+1)]
     for i in range(n+1):

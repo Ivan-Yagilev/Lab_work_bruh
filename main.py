@@ -17,7 +17,7 @@ def main(n):
             spamwriter.writerow([i, x[i], v[i], v2[i], e[i]])
 
     print(f"""    Для решения задачи использована равномерная сетка с числом разбиений n = {n};
-    Задача должна быть решена с заданной точностью ε = 0.5⋅10 –6;
+    Задача должна быть решена с заданной точностью ε = 0.5e–6;
     Задача решена с точностью ε2 = {max(e)};
     Максимальное отклонение аналитического и численного решений наблюдается в точке x= {x[e.index(max(e))]}""")
 
@@ -25,12 +25,13 @@ def main(n):
     plt.plot(x, v, 'b-', label='V(x)')
     plt.plot(x, v2, 'r-', label='V2(x)')
     plt.legend(loc='upper right')
-    plt.title("Графики численных решений с обычным и половинным шагом")
+    plt.title("Обычный и половинный шаг")
 
     plt.subplot(1, 2, 2)
     plt.plot(x, e, 'g-', label='v(x)-v2(x)')
     plt.legend(loc='upper right')
-    plt.title("Разность графиков численных решений")
+    plt.title("Разность решений")
+    plt.savefig("fig-2.png")
     plt.show()
 
 
@@ -53,17 +54,18 @@ def test(n):
     Задача решена с погрешностью ε1 = {max(e)};
     Максимальное отклонение аналитического и численного решений наблюдается в точке x = {x[e.index(max(e))]}""")
 
-    plt.subplot(1, 2, 1)
-    plt.plot(x, u, 'b-', label='u')
-    plt.plot(x, v, 'r-', label='v')
-    plt.legend(loc='upper right')
-    plt.title("Графики аналитического и численного решений")
+    # plt.subplot(1, 2, 1)
+    # plt.plot(x, u, 'b-', label='u')
+    # plt.plot(x, v, 'r-', label='v')
+    # plt.legend(loc='upper right')
+    # plt.title("Аналитическое и численное решение")
 
-    plt.subplot(1, 2, 2)
-    plt.plot(x, e, 'g-', label='u(x)-v(x)')
-    plt.legend(loc='upper right')
-    plt.title("Разность графиков аналитического и численного решений")
-    plt.show()
+    # plt.subplot(1, 2, 2)
+    # plt.plot(x, e, 'g-', label='u(x)-v(x)')
+    # plt.legend(loc='upper right')
+    # plt.title("Разность решений")
+    # plt.savefig("fig-1.png")
+    # plt.show()
 
 
 if __name__ == "__main__":
